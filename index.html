@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Бот Анонимус - Игровой бот</title>
+    
+    <!-- Favicon для всех платформ -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    
+    <style>
+        /* Базовые сбросы стилей для всех браузеров */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            text-size-adjust: 100%;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a00 100%);
+            background-attachment: fixed;
+            color: #FFD700;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Когда модальное окно открыто */
+        body.modal-open {
+            overflow: hidden !important;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+        
+        /* Шапка и меню */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 3px solid #FFD700;
+            padding: 0 clamp(10px, 3vw, 20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: clamp(10px, 2vw, 15px) 0;
+            min-height: 60px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        
+        .logo-text {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: bold;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            white-space: nowrap;
+        }
+        
+        .logo-icon {
+            color: #FFD700;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            flex-shrink: 0;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: clamp(10px, 2vw, 30px);
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .nav-btn {
+            background: transparent;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 30px);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            touch-action: manipulation;
+        }
+        
+        /* Главный экран */
+        .hero {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            display: flex;
+            align-items: center;
+            padding: clamp(80px, 15vw, 100px) clamp(15px, 5vw, 20px) clamp(30px, 5vw, 50px);
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(30px, 5vw, 60px);
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-content {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+        
+        .hero-text {
+            flex: 1;
+            animation: slideInLeft 1s ease;
+            width: 100%;
+        }
+        
+        .hero-image {
+            flex: 1;
+            animation: slideInRight 1s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .bot-image-container {
+            position: relative;
+            width: 100%;
+            max-width: min(500px, 90vw);
+            margin: 0 auto;
+        }
+        
+        .bot-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            border-radius: 20px;
+            border: clamp(3px, 1vw, 5px) solid #FFD700;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                        0 0 60px rgba(255, 215, 0, 0.2);
+            transition: transform 0.5s ease;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+        
+        .hero-title {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: clamp(20px, 4vw, 30px);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            word-break: break-word;
+        }
+        
+        .hero-description {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            margin-bottom: clamp(25px, 5vw, 40px);
+            color: #FFC400;
+            padding-right: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-description {
+                padding-right: 20px;
+            }
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(15px, 3vw, 20px);
+            margin-top: clamp(25px, 5vw, 40px);
+        }
+        
+        @media (max-width: 480px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-item {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #FFD700;
+            padding: clamp(12px, 3vw, 15px) clamp(15px, 3vw, 20px);
+            border-radius: 10px;
+            transition: transform 0.3s;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Модальное окно доната */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            height: -webkit-fill-available;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: flex-start;
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 0) 
+                    env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 0);
+            overscroll-behavior: contain;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #111 0%, #222 100%);
+            border: 3px solid #FFD700;
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 30px);
+            max-width: min(700px, 95vw);
+            width: 100%;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+            margin: clamp(10px, 5vh, 20px) auto;
+            max-height: 90vh;
+            max-height: -webkit-fill-available;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+        
+        /* Табы для выбора типа доната */
+        .donate-tabs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .donate-tabs {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .donate-tabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .donate-tab {
+            padding: 15px 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            color: #FFD700;
+            transition: all 0.3s;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-direction: column;
+            touch-action: manipulation;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+        }
+        
+        .donate-tab.active {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #FFD700;
+            transform: translateY(-2px);
+        }
+        
+        .donate-tab:active {
+            transform: scale(0.98);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        /* Стили для реквизитов */
+        .payment-method {
+            background: rgba(255, 215, 0, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: clamp(15px, 4vw, 25px);
+            margin: 20px 0;
+        }
+        
+        .card-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: clamp(15px, 4vw, 20px);
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #FFD700;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .card-number {
+            font-family: 'Courier New', monospace, monospace;
+            font-size: clamp(1rem, 4vw, 1.4rem);
+            letter-spacing: 1px;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            word-break: break-all;
+        }
+        
+        @media (min-width: 480px) {
+            .card-number {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        
+        .copy-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            transition: all 0.3s;
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            white-space: nowrap;
+            touch-action: manipulation;
+        }
+        
+        .copy-btn.copied {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }
+        
+        .bank-details {
+            margin-top: 15px;
+            color: #FFC400;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+        
+        /* Плашка с контактом */
+        .contact-plate {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: clamp(15px, 4vw, 25px);
+            margin-top: 25px;
+            text-align: center;
+            display: none;
+        }
+        
+        .contact-plate.active {
+            display: block;
+            animation: bounceIn 0.6s ease;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .contact-icon {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            margin: 15px 0;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            color: #FFC400;
+        }
+        
+        .telegram-link {
+            display: inline-block;
+            background: #0088cc;
+            color: white;
+            padding: clamp(10px, 3vw, 12px) clamp(20px, 4vw, 25px);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s;
+            min-height: 44px;
+            min-width: 44px;
+            touch-action: manipulation;
+        }
+        
+        /* Чекбокс подтверждения */
+        .confirm-checkbox {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #FFC400;
+            flex-wrap: wrap;
+        }
+        
+        .confirm-checkbox input {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            min-height: 20px;
+            accent-color: #FFD700;
+        }
+        
+        .confirm-checkbox label {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            line-height: 1.4;
+        }
+        
+        /* Кнопка оплаты */
+        .pay-button {
+            width: 100%;
+            padding: clamp(15px, 4vw, 18px);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            min-height: 60px;
+            touch-action: manipulation;
+        }
+        
+        .pay-button:disabled {
+            background: #666;
+            color: #999;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Иконки для новых функций */
+        .unwarn-icon {
+            color: #4CAF50;
+        }
+        
+        .unban-icon {
+            color: #FF5722;
+        }
+        
+        .price-tag {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        /* Форматирование номера карты */
+        .formatted-card {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            direction: ltr;
+            unicode-bidi: embed;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 767px) {
+            .hero {
+                padding-top: clamp(100px, 20vw, 150px);
+            }
+            
+            .donate-tab {
+                min-height: 60px;
+                padding: 12px 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .donate-tabs {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка с меню -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-robot logo-icon"></i>
+                <div class="logo-text">Бот Анонимус</div>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-btn" id="donateBtn">
+                    <i class="fas fa-donate"></i> <span>Донат</span>
+                </button>
+                <button class="nav-btn" id="aboutBtn">
+                    <i class="fas fa-info-circle"></i> <span>О нас</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Бот Анонимус</h1>
+                <p class="hero-description">
+                    Игровой бот для разной аудитории, в котором можно играть в казино, 
+                    заводить новых друзей, покупать себе новые вещи и веселиться, 
+                    ждем тебя!
+                </p>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <i class="fas fa-shopping-cart feature-icon"></i>
+                        <div class="feature-text">Покупка вещей</div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-gamepad feature-icon"></i>
+                        <div class="feature-text">Мини-игры</div>
+                    </div>
+                </div>
+                
+                <button class="start-btn" id="startBotBtn">
+                    <i class="fas fa-play"></i> Начать играть
+                </button>
+            </div>
+            
+            <div class="hero-image">
+                <div class="bot-image-container">
+                    <div class="image-frame">
+                        <!-- Фото бота Анонимуса -->
+                        <img src="https://i.ibb.co/JWPFZsj1/anonymous-bot.jpg" 
+                             alt="Бот Анонимус - Игровой бот" 
+                             class="bot-image bot-image-modern"
+                             loading="lazy"
+                             decoding="async">
+                    </div>
+                    <div class="image-caption">
+                        <i class="fas fa-robot"></i> Бот Анонимус - твой игровой компаньон
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно Доната -->
+    <div class="modal-overlay" id="donateModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeDonate" aria-label="Закрыть окно">&times;</button>
+            
+            <div style="text-align: center; margin-bottom: 20px;">
+                <i class="fas fa-hand-holding-heart" style="font-size: clamp(2rem, 6vw, 2.5rem); color: #FFD700; margin-bottom: 10px;"></i>
+                <h2 style="color: #FFD700; font-size: clamp(1.5rem, 5vw, 1.8rem);">Поддержать проект</h2>
+                <p style="color: #FFC400; margin-top: 5px; font-size: clamp(0.85rem, 3vw, 0.95rem);">
+                    Выберите тип доната и совершите перевод
+                </p>
+            </div>
+            
+            <!-- Табы выбора типа доната -->
+            <div class="donate-tabs">
+                <div class="donate-tab active" data-tab="vip" role="tab" aria-selected="true">
+                    <i class="fas fa-gem"></i> 
+                    <span>VIP</span>
+                    <div class="price-tag">50₽</div>
+                </div>
+                <div class="donate-tab" data-tab="custom" role="tab" aria-selected="false">
+                    <i class="fas fa-star"></i>
+                    <span>Кастом</span>
+                    <div class="price-tag">100₽</div>
+                </div>
+                <div class="donate-tab" data-tab="unwarn" role="tab" aria-selected="false">
+                    <i class="fas fa-exclamation-triangle unwarn-icon"></i>
+                    <span>UnWarn</span>
+                    <div class="price-tag">100₽</div>
+                </div>
+                <div class="donate-tab" data-tab="unban" role="tab" aria-selected="false">
+                    <i class="fas fa-ban unban-icon"></i>
+                    <span>UnBan</span>
+                    <div class="price-tag">250₽</div>
+                </div>
+            </div>
+            
+            <!-- Контент для VIP -->
+            <div class="tab-content active" id="vip-tab" role="tabpanel">
+                <div class="payment-method">
+                    <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-crown"></i> <span>VIP статус - 50₽</span>
+                    </h3>
+                    
+                    <div class="card-info">
+                        <p style="color: #FFC400; margin-bottom: 10px;">Преимущества VIP статуса:</p>
+                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
+                            <li>Приоритетная поддержка</li>
+                            <li>Эксклюзивные команды</li>
+                            <li>Особые роли в сообществе</li>
+                            <li>Дополнительные возможности в играх</li>
+                        </ul>
+                        
+                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 50₽ на карту:</p>
+                        
+                        <div class="card-number">
+                            <span id="vip-card-number" class="formatted-card">2200 7020 6675 9189</span>
+                            <button class="copy-btn" data-copy="2200702066759189" aria-label="Копировать номер карты">
+                                <i class="fas fa-copy"></i> <span>Копировать</span>
+                            </button>
+                        </div>
+                        
+                        <div class="bank-details">
+                            <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
+                            <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
+                            <p><i class="fas fa-comment"></i> Назначение: Донат VIP</p>
+                        </div>
+                    </div>
+                    
+                    <div class="confirm-checkbox">
+                        <input type="checkbox" id="vip-confirm" aria-label="Подтвердить оплату VIP статуса">
+                        <label for="vip-confirm">Я перевел(а) 50₽ на указанные реквизиты</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Контент для Кастом -->
+            <div class="tab-content" id="custom-tab" role="tabpanel" hidden>
+                <div class="payment-method">
+                    <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-palette"></i> <span>Кастом - 100₽</span>
+                    </h3>
+                    
+                    <div class="card-info">
+                        <p style="color: #FFC400; margin-bottom: 10px;">Что включает Кастом:</p>
+                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
+                            <li>Индивидуальный дизайн профиля</li>
+                            <li>Уникальные функции под ваш запрос</li>
+                            <li>Заказ любой вещи в боте по своему желанию</li>
+                            <li>Настройка фона, одежды, охраников (кроме 18+)</li>
+                        </ul>
+                        
+                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 100₽ на карту:</p>
+                        
+                        <div class="card-number">
+                            <span id="custom-card-number" class="formatted-card">2200 7020 6675 9189</span>
+                            <button class="copy-btn" data-copy="2200702066759189" aria-label="Копировать номер карты">
+                                <i class="fas fa-copy"></i> <span>Копировать</span>
+                            </button>
+                        </div>
+                        
+                        <div class="bank-details">
+                            <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
+                            <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
+                            <p><i class="fas fa-comment"></i> Назначение: Донат Кастом</p>
+                        </div>
+                    </div>
+                    
+                    <div class="confirm-checkbox">
+                        <input type="checkbox" id="custom-confirm" aria-label="Подтвердить оплату Кастом">
+                        <label for="custom-confirm">Я перевел(а) 100₽ на указанные реквизиты</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Контент для UnWarn -->
+            <div class="tab-content" id="unwarn-tab" role="tabpanel" hidden>
+                <div class="payment-method">
+                    <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-exclamation-triangle unwarn-icon"></i> <span>UnWarn - 100₽</span>
+                    </h3>
+                    
+                    <div class="card-info">
+                        <p style="color: #FFC400; margin-bottom: 10px;">Что такое UnWarn:</p>
+                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
+                            <li>Снятие одного предупреждения (варна)</li>
+                            <li>Очистка вашей репутации в боте</li>
+                            <li>Восстановление доступа к функциям</li>
+                            <li>Снятие ограничений, связанных с варнами</li>
+                        </ul>
+                        
+                        <p style="color: #FFC400; margin-bottom: 10px;">Важно: Укажите ваш ID в комментарии к платежу</p>
+                        
+                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 100₽ на карту:</p>
+                        
+                        <div class="card-number">
+                            <span id="unwarn-card-number" class="formatted-card">2200 7020 6675 9189</span>
+                            <button class="copy-btn" data-copy="2200702066759189" aria-label="Копировать номер карты">
+                                <i class="fas fa-copy"></i> <span>Копировать</span>
+                            </button>
+                        </div>
+                        
+                        <div class="bank-details">
+                            <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
+                            <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
+                            <p><i class="fas fa-comment"></i> Назначение: Донат UnWarn [ваш ID]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="confirm-checkbox">
+                        <input type="checkbox" id="unwarn-confirm" aria-label="Подтвердить оплату UnWarn">
+                        <label for="unwarn-confirm">Я перевел(а) 100₽ на указанные реквизиты</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Контент для UnBan -->
+            <div class="tab-content" id="unban-tab" role="tabpanel" hidden>
+                <div class="payment-method">
+                    <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-ban unban-icon"></i> <span>UnBan - 250₽</span>
+                    </h3>
+                    
+                    <div class="card-info">
+                        <p style="color: #FFC400; margin-bottom: 10px;">Что такое UnBan:</p>
+                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
+                            <li>Разбан (снятие блокировки) в боте</li>
+                            <li>Полное восстановление аккаунта</li>
+                            <li>Возврат всех привилегий и прогресса</li>
+                        </ul>
+                        
+                        <p style="color: #FFC400; margin-bottom: 10px;">Обязательно укажите ваш ID в комментарии к платежу</p>
+                        
+                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 250₽ на карту:</p>
+                        
+                        <div class="card-number">
+                            <span id="unban-card-number" class="formatted-card">2200 7020 6675 9189</span>
+                            <button class="copy-btn" data-copy="2200702066759189" aria-label="Копировать номер карты">
+                                <i class="fas fa-copy"></i> <span>Копировать</span>
+                            </button>
+                        </div>
+                        
+                        <div class="bank-details">
+                            <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
+                            <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
+                            <p><i class="fas fa-comment"></i> Назначение: Донат UnBan [ваш ID]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="confirm-checkbox">
+                        <input type="checkbox" id="unban-confirm" aria-label="Подтвердить оплату UnBan">
+                        <label for="unban-confirm">Я перевел(а) 250₽ на указанные реквизиты</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кнопка оплаты -->
+            <button class="pay-button" id="payButton" disabled aria-label="Подтвердить оплату и отправить чек">
+                <i class="fas fa-paper-plane"></i> <span>Я оплатил, отправить чек</span>
+            </button>
+            
+            <!-- Плашка с контактом -->
+            <div class="contact-plate" id="contactPlate">
+                <div class="contact-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <h3 style="color: #FFD700; margin-bottom: 10px; font-size: clamp(1.2rem, 4vw, 1.5rem);">Отправьте чек оплаты</h3>
+                <p class="contact-info" style="color: #FFC400;">
+                    После оплаты отправьте скриншот чека или фото перевода нашему администратору в Telegram
+                </p>
+                
+                <div style="margin: 20px 0; padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                    <p style="color: #FFD700; font-weight: bold; margin-bottom: 5px; font-size: clamp(0.9rem, 3vw, 1rem);">Контакт для связи:</p>
+                    <p style="color: #FFC400; font-size: clamp(1rem, 4vw, 1.2rem);">
+                        <i class="fab fa-telegram"></i> @thewinnertakeisall
+                    </p>
+                </div>
+                
+                <a href="https://t.me/thewinnertakeisall" class="telegram-link" target="_blank" rel="noopener noreferrer" aria-label="Написать администратору в Telegram">
+                    <i class="fab fa-telegram"></i> <span>Написать в Telegram</span>
+                </a>
+                
+                <p style="margin-top: 15px; color: #FFA500; font-size: clamp(0.8rem, 2.5vw, 0.9rem);">
+                    После проверки чека вам будут начислены привилегии в течение 24 часов
+                </p>
+                
+                <!-- Особые инструкции для UnWarn/UnBan -->
+                <div id="specialInstructions" style="display: none; margin-top: 15px; padding: 10px; background: rgba(255, 87, 34, 0.1); border-radius: 8px; border-left: 3px solid #FF5722;">
+                    <p style="color: #FFC400; font-size: 0.85rem;">
+                        <i class="fas fa-info-circle"></i> 
+                        <span id="instructionsText"></span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Инструкция -->
+            <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.05); border-radius: 10px; border-left: 3px solid #FFD700;">
+                <h4 style="color: #FFD700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-size: clamp(1rem, 3vw, 1.1rem);">
+                    <i class="fas fa-info-circle"></i> <span>Как это работает:</span>
+                </h4>
+                <ol style="color: #FFC400; padding-left: 20px; font-size: clamp(0.8rem, 2.5vw, 0.9rem); line-height: 1.6;">
+                    <li>Выберите тип доната</li>
+                    <li>Скопируйте реквизиты карты</li>
+                    <li>Совершите перевод в своем банковском приложении</li>
+                    <li>Подтвердите оплату галочкой</li>
+                    <li>Отправьте чек администратору в Telegram</li>
+                    <li>Получите привилегии в течение 24 часов</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно "О нас" -->
+    <div class="modal-overlay about-modal" id="aboutModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeAbout" aria-label="Закрыть окно">&times;</button>
+            
+            <div class="about-content">
+                <h2 style="color: #FFD700; font-size: clamp(1.5rem, 5vw, 2.2rem); display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-info-circle"></i> <span>О нашем боте</span>
+                </h2>
+                
+                <p style="margin-bottom: 20px; font-size: clamp(1rem, 3vw, 1.1rem); color: #FFC400; line-height: 1.7;">
+                    <strong>Бот Анонимус</strong> — это инновационный игровой бот, созданный для того, 
+                    чтобы приносить радость и развлечение нашим пользователям.
+                </p>
+                
+                <p style="margin-bottom: 20px; font-size: clamp(1rem, 3vw, 1.1rem); color: #FFC400; line-height: 1.7;">
+                    Мы стремимся создать дружелюбное и увлекательное сообщество, где каждый 
+                    может найти что-то интересное для себя: от азартных игр до общения с 
+                    единомышленниками.
+                </p>
+                
+                <p style="font-size: clamp(1rem, 3vw, 1.1rem); color: #FFC400; line-height: 1.7;">
+                    Наша команда постоянно работает над улучшением функционала и добавлением 
+                    новых интересных возможностей для наших пользователей.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Элементы DOM
+        const donateBtn = document.getElementById('donateBtn');
+        const aboutBtn = document.getElementById('aboutBtn');
+        const startBotBtn = document.getElementById('startBotBtn');
+        const donateModal = document.getElementById('donateModal');
+        const aboutModal = document.getElementById('aboutModal');
+        const closeDonate = document.getElementById('closeDonate');
+        const closeAbout = document.getElementById('closeAbout');
+        const payButton = document.getElementById('payButton');
+        const contactPlate = document.getElementById('contactPlate');
+        const specialInstructions = document.getElementById('specialInstructions');
+        const instructionsText = document.getElementById('instructionsText');
+        
+        // Текущий выбранный тип доната
+        let currentDonateType = 'vip';
+        
+        // Данные донатов
+        const donateData = {
+            'vip': {
+                amount: '50',
+                card: '2200702066759189',
+                cardFormatted: '2200 7020 6675 9189',
+                confirmId: 'vip-confirm'
+            },
+            'custom': {
+                amount: '100',
+                card: '2200702066759189',
+                cardFormatted: '2200 7020 6675 9189',
+                confirmId: 'custom-confirm'
+            },
+            'unwarn': {
+                amount: '100',
+                card: '2200702066759189',
+                cardFormatted: '2200 7020 6675 9189',
+                confirmId: 'unwarn-confirm',
+                specialMessage: 'Для UnWarn обязательно укажите ваш ID пользователя в комментарии к платежу'
+            },
+            'unban': {
+                amount: '250',
+                card: '2200702066759189',
+                cardFormatted: '2200 7020 6675 9189',
+                confirmId: 'unban-confirm',
+                specialMessage: 'Для UnBan укажите ваш ID в комментарии'
+            }
+        };
+
+        // Открытие модальных окон
+        donateBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(donateModal);
+        });
+
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(aboutModal);
+        });
+
+        // Закрытие модальных окон
+        closeDonate.addEventListener('click', () => {
+            closeModal(donateModal);
+        });
+
+        closeAbout.addEventListener('click', () => {
+            closeModal(aboutModal);
+        });
+
+        // Функция открытия модального окна
+        function openModal(modal) {
+            modal.style.display = 'flex';
+            document.body.classList.add('modal-open');
+            
+            if (modal === donateModal) {
+                resetDonateForm();
+            }
+        }
+
+        // Функция закрытия модального окна
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            
+            if (modal === donateModal) {
+                resetDonateForm();
+            }
+        }
+
+        // Закрытие при клике вне окна
+        [donateModal, aboutModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+
+        // Закрытие на Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (donateModal.style.display === 'flex') {
+                    closeModal(donateModal);
+                } else if (aboutModal.style.display === 'flex') {
+                    closeModal(aboutModal);
+                }
+            }
+        });
+
+        // Кнопка "Начать играть"
+        startBotBtn.addEventListener('click', () => {
+            alert('Скоро здесь будет ссылка на бота! 🎮');
+        });
+
+        // Переключение табов доната
+        document.querySelectorAll('.donate-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab(this);
+            });
+        });
+
+        // Функция переключения таба
+        function switchTab(tab) {
+            // Обновляем активный таб
+            document.querySelectorAll('.donate-tab').forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            
+            // Получаем тип таба
+            currentDonateType = tab.dataset.tab;
+            
+            // Показываем соответствующий контент
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+                content.hidden = true;
+            });
+            const activeContent = document.getElementById(`${currentDonateType}-tab`);
+            activeContent.classList.add('active');
+            activeContent.hidden = false;
+            
+            // Сбрасываем состояние
+            resetCheckboxAndPlate();
+            
+            // Обновляем специальные инструкции
+            updateSpecialInstructions();
+        }
+
+        // Обновление специальных инструкций
+        function updateSpecialInstructions() {
+            const data = donateData[currentDonateType];
+            
+            if (data.specialMessage) {
+                specialInstructions.style.display = 'block';
+                instructionsText.textContent = data.specialMessage;
+            } else {
+                specialInstructions.style.display = 'none';
+            }
+        }
+
+        // Копирование номера карты
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const cardNumber = this.dataset.copy;
+                
+                try {
+                    await navigator.clipboard.writeText(cardNumber);
+                    
+                    // Визуальный feedback
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> <span>Скопировано!</span>';
+                    this.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    // Fallback
+                    const textArea = document.createElement('textarea');
+                    textArea.value = cardNumber;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> <span>Скопировано!</span>';
+                    this.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.classList.remove('copied');
+                    }, 2000);
+                }
+            });
+        });
+
+        // Проверка чекбоксов
+        document.getElementById('vip-confirm').addEventListener('change', function() {
+            checkPaymentConfirmation();
+        });
+
+        document.getElementById('custom-confirm').addEventListener('change', function() {
+            checkPaymentConfirmation();
+        });
+
+        document.getElementById('unwarn-confirm').addEventListener('change', function() {
+            checkPaymentConfirmation();
+        });
+
+        document.getElementById('unban-confirm').addEventListener('change', function() {
+            checkPaymentConfirmation();
+        });
+
+        // Проверка подтверждения оплаты
+        function checkPaymentConfirmation() {
+            const data = donateData[currentDonateType];
+            const isChecked = document.getElementById(data.confirmId).checked;
+            
+            if (isChecked) {
+                payButton.disabled = false;
+                payButton.setAttribute('aria-disabled', 'false');
+            } else {
+                payButton.disabled = true;
+                payButton.setAttribute('aria-disabled', 'true');
+            }
+        }
+
+        // Кнопка "Я оплатил, отправить чек"
+        payButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            const data = donateData[currentDonateType];
+            
+            // Показываем плашку с контактом
+            contactPlate.classList.add('active');
+            
+            // Обновляем специальные инструкции
+            updateSpecialInstructions();
+            
+            // Прокручиваем к плашке
+            contactPlate.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Меняем текст кнопки
+            this.innerHTML = '<i class="fas fa-check"></i> <span>Чек ожидает отправки</span>';
+            this.style.background = '#4CAF50';
+            this.disabled = true;
+            this.setAttribute('aria-disabled', 'true');
+            
+            // Показываем уведомление
+            setTimeout(() => {
+                const message = currentDonateType === 'unban' 
+                    ? `Оплата ${data.amount}₽ за UnBan успешно зарегистрирована! Отправьте чек администратору.`
+                    : `Оплата ${data.amount}₽ за ${currentDonateType} успешно зарегистрирована! Отправьте чек администратору в Telegram.`;
+                
+                alert(message);
+            }, 500);
+        });
+
+        // Сброс формы доната
+        function resetDonateForm() {
+            // Сбрасываем все чекбоксы
+            Object.values(donateData).forEach(data => {
+                const checkbox = document.getElementById(data.confirmId);
+                if (checkbox) checkbox.checked = false;
+            });
+            
+            // Скрываем плашку
+            contactPlate.classList.remove('active');
+            specialInstructions.style.display = 'none';
+            
+            // Сбрасываем кнопку
+            payButton.disabled = true;
+            payButton.setAttribute('aria-disabled', 'true');
+            payButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Я оплатил, отправить чек</span>';
+            payButton.style.background = '';
+            
+            // Устанавливаем VIP таб активным
+            document.querySelectorAll('.donate-tab').forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            const vipTab = document.querySelector('[data-tab="vip"]');
+            if (vipTab) {
+                vipTab.classList.add('active');
+                vipTab.setAttribute('aria-selected', 'true');
+            }
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+                content.hidden = true;
+            });
+            const vipContent = document.getElementById('vip-tab');
+            if (vipContent) {
+                vipContent.classList.add('active');
+                vipContent.hidden = false;
+            }
+            
+            currentDonateType = 'vip';
+            updateSpecialInstructions();
+        }
+
+        // Сброс чекбокса и плашки
+        function resetCheckboxAndPlate() {
+            // Сбрасываем все чекбоксы
+            Object.values(donateData).forEach(data => {
+                const checkbox = document.getElementById(data.confirmId);
+                if (checkbox) checkbox.checked = false;
+            });
+            
+            // Скрываем плашку
+            contactPlate.classList.remove('active');
+            specialInstructions.style.display = 'none';
+            
+            // Сбрасываем кнопку
+            payButton.disabled = true;
+            payButton.setAttribute('aria-disabled', 'true');
+            payButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Я оплатил, отправить чек</span>';
+            payButton.style.background = '';
+            
+            updateSpecialInstructions();
+        }
+
+        // Обработка ошибки загрузки изображения
+        const botImage = document.querySelector('.bot-image');
+        if (botImage) {
+            botImage.addEventListener('error', function() {
+                this.src = 'https://i.imgur.com/8W0Np8C.png';
+                this.alt = 'Бот Анонимус - изображение временно недоступно';
+            });
+        }
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Добавляем обработку клавиатурной навигации для табов
+            document.addEventListener('keydown', function(e) {
+                if (donateModal.style.display === 'flex') {
+                    const tabs = document.querySelectorAll('.donate-tab');
+                    const activeIndex = Array.from(tabs).findIndex(t => t.classList.contains('active'));
+                    
+                    if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        const nextIndex = (activeIndex + 1) % tabs.length;
+                        switchTab(tabs[nextIndex]);
+                        tabs[nextIndex].focus();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        const prevIndex = (activeIndex - 1 + tabs.length) % tabs.length;
+                        switchTab(tabs[prevIndex]);
+                        tabs[prevIndex].focus();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
