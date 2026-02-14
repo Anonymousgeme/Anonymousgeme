@@ -12,7 +12,6 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
     
     <style>
-        /* Базовые сбросы стилей для всех браузеров */
         * {
             margin: 0;
             padding: 0;
@@ -220,7 +219,7 @@
             }
         }
         
-        /* ОБНОВЛЕННАЯ КНОПКА НАЧАТЬ ИГРАТЬ - МИНИМАЛИСТИЧНЫЙ ЖЕЛТЫЙ СТИЛЬ */
+        /* КНОПКА ИГРАТЬ */
         .start-btn {
             background: linear-gradient(45deg, #FFD700, #FFC800);
             color: #000;
@@ -253,25 +252,6 @@
                         0 0 0 1px rgba(255, 215, 0, 0.2),
                         inset 0 2px 0 rgba(255, 255, 255, 0.3);
             background: linear-gradient(45deg, #FFE44D, #FFD700);
-        }
-        
-        .start-btn:active {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.25),
-                        0 0 0 1px rgba(255, 215, 0, 0.1),
-                        inset 0 2px 0 rgba(255, 255, 255, 0.2);
-        }
-        
-        .start-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 50px;
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
-            pointer-events: none;
         }
         
         .start-btn i {
@@ -311,185 +291,6 @@
         .feature-item:hover {
             transform: translateY(-5px);
             background: rgba(255, 215, 0, 0.15);
-        }
-        
-        /* НОВЫЙ РАЗДЕЛ: ОБНОВЛЕНИЯ И РАЗВИТИЕ */
-        .updates-section {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 0, 0.8) 100%);
-            border-top: 3px solid #FFD700;
-            border-bottom: 3px solid #FFD700;
-            padding: clamp(50px, 8vw, 80px) clamp(15px, 5vw, 20px);
-            margin: 40px 0;
-        }
-        
-        .updates-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: clamp(30px, 6vw, 50px);
-            font-size: clamp(1.8rem, 6vw, 2.5rem);
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-        
-        .updates-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(20px, 4vw, 30px);
-            margin-bottom: 50px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        @media (min-width: 768px) {
-            .updates-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .update-card {
-            background: rgba(255, 215, 0, 0.05);
-            border: 2px solid rgba(255, 215, 0, 0.2);
-            border-radius: 15px;
-            padding: clamp(20px, 4vw, 30px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-        
-        .update-card:hover {
-            transform: translateY(-5px);
-            border-color: #FFD700;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
-        }
-        
-        .update-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-        }
-        
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-direction: column;
-        }
-        
-        .card-icon {
-            font-size: 2rem;
-            color: #FFD700;
-            background: rgba(255, 215, 0, 0.1);
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .card-title {
-            font-size: 1.6rem;
-            color: #FFD700;
-            margin: 10px 0 5px 0;
-        }
-        
-        .update-date {
-            color: #FFA500;
-            font-size: 1rem;
-            margin-top: 5px;
-        }
-        
-        .update-list {
-            list-style: none;
-            padding: 0;
-            margin: 25px 0 0 0;
-            text-align: left;
-        }
-        
-        .update-list li {
-            padding: 10px 0 10px 30px;
-            position: relative;
-            color: #FFC400;
-            line-height: 1.5;
-            font-size: 1.05rem;
-            margin-bottom: 8px;
-        }
-        
-        .update-list li::before {
-            content: '🎯';
-            position: absolute;
-            left: 0;
-            color: #FFD700;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .development-goals {
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 15px;
-            padding: clamp(25px, 5vw, 40px);
-            margin-top: 40px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-        }
-        
-        .goals-title {
-            font-size: 1.6rem;
-            color: #FFD700;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        .goals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .goal-item {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #FFD700;
-            transition: transform 0.3s ease;
-        }
-        
-        .goal-item:hover {
-            transform: translateY(-3px);
-            background: rgba(0, 0, 0, 0.4);
-        }
-        
-        .goal-item h4 {
-            color: #FFD700;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .goal-item p {
-            color: #FFC400;
-            font-size: 0.95rem;
-            line-height: 1.5;
         }
         
         /* Модальное окно доната */
@@ -656,10 +457,6 @@
             touch-action: manipulation;
         }
         
-        .copy-btn:hover {
-            background: rgba(255, 215, 0, 0.3);
-        }
-        
         .copy-btn.copied {
             background: #4CAF50;
             border-color: #4CAF50;
@@ -670,6 +467,112 @@
             margin-top: 15px;
             color: #FFC400;
             font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+        
+        /* НОВЫЕ СТИЛИ ДЛЯ ЮМАНИ */
+        .yoomoney-payment {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .yoomoney-title {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .yoomoney-button {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin: 10px 0;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .yoomoney-button:hover {
+            background: linear-gradient(45deg, #FFC800, #FF8C00);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ */
+        .warning-message {
+            background: rgba(255, 87, 34, 0.1);
+            border: 2px solid #FF5722;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: pulse-warning 2s infinite;
+        }
+        
+        @keyframes pulse-warning {
+            0% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 87, 34, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
+        }
+        
+        .warning-message i {
+            color: #FF5722;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .warning-message p {
+            color: #FF5722;
+            font-weight: bold;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .warning-message small {
+            color: #FFC400;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .telegram-btn {
+            background: #0088cc;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .telegram-btn:hover {
+            background: #0077b3;
+            transform: translateY(-2px);
         }
         
         /* Плашка с контактом */
@@ -749,41 +652,7 @@
             line-height: 1.4;
         }
         
-        /* Кнопка оплаты */
-        .pay-button {
-            width: 100%;
-            padding: clamp(15px, 4vw, 18px);
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #000;
-            border: none;
-            border-radius: 10px;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            min-height: 60px;
-            touch-action: manipulation;
-        }
-        
-        .pay-button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-        
-        .pay-button:disabled {
-            background: #666;
-            color: #999;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        /* Иконки для новых функций */
+        /* Иконки */
         .unwarn-icon {
             color: #4CAF50;
         }
@@ -802,7 +671,6 @@
             margin-top: 5px;
         }
         
-        /* Форматирование номера карты */
         .formatted-card {
             font-family: 'Courier New', monospace;
             letter-spacing: 2px;
@@ -810,7 +678,6 @@
             unicode-bidi: embed;
         }
         
-        /* Кнопка закрытия модального окна */
         .close-btn {
             position: absolute;
             top: 15px;
@@ -893,11 +760,6 @@
             .footer-link {
                 font-size: 1rem;
             }
-            
-            .update-list li {
-                padding-left: 25px;
-                font-size: 1rem;
-            }
         }
         
         @media (max-width: 480px) {
@@ -912,22 +774,6 @@
             }
             
             .donate-tabs {
-                grid-template-columns: 1fr;
-            }
-            
-            .card-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-            
-            .card-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            
-            .goals-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1038,7 +884,7 @@
                     </div>
                 </div>
                 
-                <!-- ОБНОВЛЕННАЯ КНОПКА С ССЫЛКОЙ НА ТЕЛЕГРАМ БОТА -->
+                <!-- КНОПКА С СЫЛКОЙ НА ТЕЛЕГРАМ БОТА -->
                 <a href="https://t.me/Anonymous07082010bot" class="start-btn" id="startBotBtn" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-gamepad"></i> Играть
                 </a>
@@ -1050,7 +896,7 @@
                         <!-- Фото бота Анонимуса -->
                         <img src="https://i.ibb.co/JWPFZsj1/anonymous-bot.jpg" 
                              alt="Бот Анонимус - Игровой бот" 
-                             class="bot-image bot-image-modern"
+                             class="bot-image"
                              loading="lazy"
                              decoding="async">
                     </div>
@@ -1062,40 +908,54 @@
         </div>
     </section>
 
-    <!-- НОВЫЙ РАЗДЕЛ: ОБНОВЛЕНИЯ И РАЗВИТИЕ -->
-    <section class="updates-section" id="updates">
-        <div class="updates-container">
-            <h2 class="section-title">
+    <!-- НОВЫЙ РАЗДЕЛ: ПЛАНЫ НА БУДУЩЕЕ -->
+    <section class="updates-section" id="updates" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 0, 0.8) 100%); border-top: 3px solid #FFD700; border-bottom: 3px solid #FFD700; padding: clamp(50px, 8vw, 80px) clamp(15px, 5vw, 20px); margin: 40px 0;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: clamp(30px, 6vw, 50px); font-size: clamp(1.8rem, 6vw, 2.5rem); background: linear-gradient(45deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 <i class="fas fa-sync-alt"></i> Планы на будущее
             </h2>
             
-            <div class="updates-grid">
-                <!-- ТОЛЬКО ОДНА КАРТОЧКА: ПЛАНЫ НА БУДУЩЕЕ -->
-                <div class="update-card">
-                    <div class="card-header">
-                        <div class="card-icon">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: rgba(255, 215, 0, 0.05); border: 2px solid rgba(255, 215, 0, 0.2); border-radius: 15px; padding: clamp(20px, 4vw, 30px); text-align: center;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; flex-direction: column;">
+                        <div style="font-size: 2rem; color: #FFD700; background: rgba(255, 215, 0, 0.1); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                         <div>
-                            <h3 class="card-title">Планы на будущее</h3>
-                            <!-- ИЗМЕНЕН ГОД: 2025 → 2026 -->
-                            <div class="update-date">2026 год</div>
+                            <h3 style="font-size: 1.6rem; color: #FFD700; margin: 10px 0 5px 0;">Планы на будущее</h3>
+                            <div style="color: #FFA500; font-size: 1rem;">2026 год</div>
                         </div>
                     </div>
                     
-                    <ul class="update-list">
-                        <!-- УДАЛЕНЫ ПУНКТЫ:
-                        <li>Добавление системы кланов и гильдий</li>
-                        <li>Новые турниры и соревнования с призами</li>
-                        <li>Система достижений и наград</li>
-                        -->
-                        <li>Интеграция с другими платформами</li>
-                        <li>Улучшение мобильной версии</li>
-                        <li>Расширение функционала кастомизации</li>
-                        <li>Новые мини-игры и развлечения</li>
-                        <li>Улучшение системы экономики</li>
-                        <li>Оптимизация производительности бота</li>
-                        <li>Добавление новых социальных функций</li>
+                    <ul style="list-style: none; padding: 0; margin: 25px 0 0 0; text-align: left;">
+                        <li style="padding: 10px 0 10px 30px; position: relative; color: #FFC400; line-height: 1.5; font-size: 1.05rem; margin-bottom: 8px;">
+                            <span style="position: absolute; left: 0; color: #FFD700; font-weight: bold; font-size: 1.2rem;">🎯</span>
+                            Интеграция с другими платформами
+                        </li>
+                        <li style="padding: 10px 0 10px 30px; position: relative; color: #FFC400; line-height: 1.5; font-size: 1.05rem; margin-bottom: 8px;">
+                            <span style="position: absolute; left: 0; color: #FFD700; font-weight: bold; font-size: 1.2rem;">🎯</span>
+                            Улучшение мобильной версии
+                        </li>
+                        <li style="padding: 10px 0 10px 30px; position: relative; color: #FFC400; line-height: 1.5; font-size: 1.05rem; margin-bottom: 8px;">
+                            <span style="position: absolute; left: 0; color: #FFD700; font-weight: bold; font-size: 1.2rem;">🎯</span>
+                            Расширение функционала кастомизации
+                        </li>
+                        <li style="padding: 10px 0 10px 30px; position: relative; color: #FFC400; line-height: 1.5; font-size: 1.05rem; margin-bottom: 8px;">
+                            <span style="position: absolute; left: 0; color: #FFD700; font-weight: bold; font-size: 1.2rem;">🎯</span>
+                            Новые мини-игры и развлечения
+                        </li>
+                        <li style="padding: 10px 0 10px 30px; position: relative; color: #FFC400; line-height: 1.5; font-size: 1.05rem; margin-bottom: 8px;">
+                            <span style="position: absolute; left: 0; color: #FFD700; font-weight: bold; font-size: 1.2rem;">🎯</span>
+                            Улучшение системы экономики
+                        </li>
+                        <li style="padding: 10px 0 10px 30px; position: relative; color: #FFC400; line-height: 1.5; font-size: 1.05rem; margin-bottom: 8px;">
+                            <span style="position: absolute; left: 0; color: #FFD700; font-weight: bold; font-size: 1.2rem;">🎯</span>
+                            Оптимизация производительности бота
+                        </li>
+                        <li style="padding: 10px 0 10px 30px; position: relative; color: #FFC400; line-height: 1.5; font-size: 1.05rem; margin-bottom: 8px;">
+                            <span style="position: absolute; left: 0; color: #FFD700; font-weight: bold; font-size: 1.2rem;">🎯</span>
+                            Добавление новых социальных функций
+                        </li>
                     </ul>
                     
                     <div style="margin-top: 30px; padding: 15px; background: rgba(255, 215, 0, 0.05); border-radius: 10px;">
@@ -1109,30 +969,27 @@
             </div>
             
             <!-- Цели развития -->
-            <div class="development-goals">
-                <h3 class="goals-title">
+            <div style="background: rgba(255, 215, 0, 0.1); border-radius: 15px; padding: clamp(25px, 5vw, 40px); margin-top: 40px; border: 2px solid rgba(255, 215, 0, 0.3);">
+                <h3 style="font-size: 1.6rem; color: #FFD700; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; justify-content: center;">
                     <i class="fas fa-bullseye"></i> Цели развития бота
                 </h3>
                 
-                <div class="goals-grid">
-                    <div class="goal-item">
-                        <h4><i class="fas fa-user-friends"></i> Сообщество</h4>
-                        <p>Создать активное и дружелюбное сообщество игроков, где каждый найдет себе занятие по интересам.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 10px; border-left: 4px solid #FFD700;">
+                        <h4 style="color: #FFD700; margin-bottom: 10px;"><i class="fas fa-user-friends"></i> Сообщество</h4>
+                        <p style="color: #FFC400;">Создать активное и дружелюбное сообщество игроков, где каждый найдет себе занятие по интересам.</p>
                     </div>
-                    
-                    <div class="goal-item">
-                        <h4><i class="fas fa-gamepad"></i> Развлечения</h4>
-                        <p>Предоставить разнообразные игры и развлечения для всех возрастов и предпочтений.</p>
+                    <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 10px; border-left: 4px solid #FFD700;">
+                        <h4 style="color: #FFD700; margin-bottom: 10px;"><i class="fas fa-gamepad"></i> Развлечения</h4>
+                        <p style="color: #FFC400;">Предоставить разнообразные игры и развлечения для всех возрастов и предпочтений.</p>
                     </div>
-                    
-                    <div class="goal-item">
-                        <h4><i class="fas fa-shield-alt"></i> Безопасность</h4>
-                        <p>Обеспечить безопасную среду для всех пользователей с системой модерации и поддержкой.</p>
+                    <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 10px; border-left: 4px solid #FFD700;">
+                        <h4 style="color: #FFD700; margin-bottom: 10px;"><i class="fas fa-shield-alt"></i> Безопасность</h4>
+                        <p style="color: #FFC400;">Обеспечить безопасную среду для всех пользователей с системой модерации и поддержкой.</p>
                     </div>
-                    
-                    <div class="goal-item">
-                        <h4><i class="fas fa-chart-line"></i> Развитие</h4>
-                        <p>Постоянно развивать и улучшать бота, добавляя новые функции по запросам сообщества.</p>
+                    <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 10px; border-left: 4px solid #FFD700;">
+                        <h4 style="color: #FFD700; margin-bottom: 10px;"><i class="fas fa-chart-line"></i> Развитие</h4>
+                        <p style="color: #FFC400;">Постоянно развивать и улучшать бота, добавляя новые функции по запросам сообщества.</p>
                     </div>
                 </div>
                 
@@ -1141,7 +998,7 @@
                         <i class="fas fa-lightbulb"></i> 
                         <strong>Есть идеи для улучшения бота?</strong> Пишите нам в Telegram!
                     </p>
-                    <a href="https://t.me/thewinnertakeisall" class="telegram-link" target="_blank" rel="noopener noreferrer" style="margin-top: 15px;">
+                    <a href="https://t.me/thewinnertakeisall" class="telegram-link" target="_blank" rel="noopener noreferrer" style="margin-top: 15px; display: inline-block; background: #0088cc; color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold;">
                         <i class="fab fa-telegram"></i> <span>Предложить идею</span>
                     </a>
                 </div>
@@ -1149,7 +1006,7 @@
         </div>
     </section>
 
-    <!-- Модальное окно Доната -->
+    <!-- Модальное окно Доната с оплатой через ЮMoney -->
     <div class="modal-overlay" id="donateModal">
         <div class="modal-content">
             <button class="close-btn" id="closeDonate" aria-label="Закрыть окно">&times;</button>
@@ -1177,33 +1034,55 @@
                 <div class="donate-tab" data-tab="unwarn" role="tab" aria-selected="false">
                     <i class="fas fa-exclamation-triangle unwarn-icon"></i>
                     <span>UnWarn</span>
-                    <!-- ИЗМЕНЕНА ЦЕНА: 100₽ → 145₽ -->
                     <div class="price-tag">145₽</div>
                 </div>
                 <div class="donate-tab" data-tab="unban" role="tab" aria-selected="false">
                     <i class="fas fa-ban unban-icon"></i>
                     <span>UnBan</span>
-                    <div class="price-tag">250₽</div>
+                    <!-- ЦЕНА ИЗМЕНЕНА НА 185₽ -->
+                    <div class="price-tag">185₽</div>
                 </div>
             </div>
             
-            <!-- Контент для VIP -->
+            <!-- ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ ДЛЯ ВСЕХ ТИПОВ ДОНАТА -->
+            <div class="warning-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>⚠️ ВНИМАНИЕ! ⚠️</p>
+                <p>При оплате, если не отправить чек администратору в Telegram —<br> 
+                <strong style="color: #FF5722; font-size: 1.2rem;">ВЫДАЧИ И ВОЗВРАТА НЕ БУДЕТ!</strong></p>
+                <small>Обязательно сохраните скриншот оплаты и отправьте @thewinnertakeisall</small>
+            </div>
+            
+            <!-- Контент для VIP - 50₽ -->
             <div class="tab-content active" id="vip-tab" role="tabpanel">
                 <div class="payment-method">
                     <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                         <i class="fas fa-crown"></i> <span>VIP статус - 50₽</span>
                     </h3>
                     
-                    <div class="card-info">
-                        <p style="color: #FFC400; margin-bottom: 10px;">Преимущества VIP статуса:</p>
-                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
-                            <li>Приоритетная поддержка</li>
-                            <li>Эксклюзивные команды</li>
-                            <li>Особые роли в сообществе</li>
-                            <li>Дополнительные возможности в играх</li>
-                        </ul>
+                    <!-- ОПЛАТА ЧЕРЕЗ ЮMONEY -->
+                    <div class="yoomoney-payment">
+                        <h4 class="yoomoney-title">
+                            <i class="fas fa-ruble-sign"></i> Оплатить через ЮMoney
+                        </h4>
                         
-                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 50₽ на карту:</p>
+                        <!-- КНОПКА ЮMONEY ДЛЯ 50₽ -->
+                        <a href="https://yoomoney.ru/to/4100118083414183/50" 
+                           class="yoomoney-button"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fas fa-ruble-sign"></i> 
+                            Оплатить 50₽ через ЮMoney
+                        </a>
+                        
+                        <div style="margin-top: 10px; color: #FFC400; font-size: 0.9rem;">
+                            <i class="fas fa-mobile-alt"></i> Платеж через приложение или карту
+                        </div>
+                    </div>
+                    
+                    <!-- Альтернативный перевод на карту -->
+                    <div class="card-info">
+                        <p style="color: #FFC400; margin-bottom: 10px;">Или переведите на карту:</p>
                         
                         <div class="card-number">
                             <span id="vip-card-number" class="formatted-card">2200 7020 6675 9189</span>
@@ -1215,192 +1094,209 @@
                         <div class="bank-details">
                             <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
                             <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
-                            <p><i class="fas fa-comment"></i> Назначение: Донат VIP</p>
                         </div>
                     </div>
                     
+                    <!-- Кнопка перехода в Telegram после оплаты -->
+                    <a href="https://t.me/thewinnertakeisall?text=%D0%AF%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D0%BB(%D0%B0)%20VIP%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%D0%BD%D0%B0%2050%D1%80%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D0%AEMoney%20%F0%9F%9A%80%0A%0A%F0%9F%93%B7%20%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%20%D1%87%D0%B5%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%0AID:%20[%D0%B2%D0%B0%D1%88%20ID]" 
+                       class="telegram-btn" 
+                       target="_blank"
+                       id="vip-telegram-btn">
+                        <i class="fab fa-telegram"></i> Я оплатил, перейти в Telegram
+                    </a>
+                    
                     <div class="confirm-checkbox">
                         <input type="checkbox" id="vip-confirm" aria-label="Подтвердить оплату VIP статуса">
-                        <label for="vip-confirm">Я перевел(а) 50₽ на указанные реквизиты</label>
+                        <label for="vip-confirm">Я перевел(а) 50₽ и отправлю чек</label>
                     </div>
                 </div>
             </div>
             
-            <!-- Контент для Кастом -->
+            <!-- Контент для Кастом - 100₽ -->
             <div class="tab-content" id="custom-tab" role="tabpanel" hidden>
                 <div class="payment-method">
                     <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                         <i class="fas fa-palette"></i> <span>Кастом - 100₽</span>
                     </h3>
                     
+                    <!-- ОПЛАТА ЧЕРЕЗ ЮMONEY -->
+                    <div class="yoomoney-payment">
+                        <h4 class="yoomoney-title">
+                            <i class="fas fa-ruble-sign"></i> Оплатить через ЮMoney
+                        </h4>
+                        
+                        <!-- КНОПКА ЮMONEY ДЛЯ 100₽ -->
+                        <a href="https://yoomoney.ru/to/4100118083414183/100" 
+                           class="yoomoney-button"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fas fa-ruble-sign"></i> 
+                            Оплатить 100₽ через ЮMoney
+                        </a>
+                    </div>
+                    
                     <div class="card-info">
-                        <p style="color: #FFC400; margin-bottom: 10px;">Что включает Кастом:</p>
-                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
-                            <li>Индивидуальный дизайн профиля</li>
-                            <li>Уникальные функции под ваш запрос</li>
-                            <li>Заказ любой вещи в боте по своему желанию</li>
-                            <li>Настройка фона, одежды, охраников (кроме 18+)</li>
-                        </ul>
-                        
-                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 100₽ на карту:</p>
-                        
                         <div class="card-number">
-                            <span id="custom-card-number" class="formatted-card">2200 7020 6675 9189</span>
-                            <button class="copy-btn" data-copy="2200702066759189" aria-label="Копировать номер карты">
-                                <i class="fas fa-copy"></i> <span>Копировать</span>
-                            </button>
+                            <span class="formatted-card">2200 7020 6675 9189</span>
+                            <button class="copy-btn" data-copy="2200702066759189">Копировать</button>
                         </div>
-                        
                         <div class="bank-details">
-                            <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
-                            <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
-                            <p><i class="fas fa-comment"></i> Назначение: Донат Кастом</p>
+                            <p>Михаил Шаталин • Тинькофф</p>
                         </div>
                     </div>
                     
+                    <a href="https://t.me/thewinnertakeisall?text=%D0%AF%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D0%BB(%D0%B0)%20%D0%9A%D0%B0%D1%81%D1%82%D0%BE%D0%BC%20%D0%BD%D0%B0%20100%D1%80%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D0%AEMoney%20%F0%9F%8E%A8%0A%0A%F0%9F%93%B7%20%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%20%D1%87%D0%B5%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%0AID:%20[%D0%B2%D0%B0%D1%88%20ID]" 
+                       class="telegram-btn" 
+                       target="_blank">
+                        <i class="fab fa-telegram"></i> Я оплатил, перейти в Telegram
+                    </a>
+                    
                     <div class="confirm-checkbox">
-                        <input type="checkbox" id="custom-confirm" aria-label="Подтвердить оплату Кастом">
-                        <label for="custom-confirm">Я перевел(а) 100₽ на указанные реквизиты</label>
+                        <input type="checkbox" id="custom-confirm">
+                        <label for="custom-confirm">Я перевел(а) 100₽ и отправлю чек</label>
                     </div>
                 </div>
             </div>
             
-            <!-- Контент для UnWarn -->
+            <!-- Контент для UnWarn - 145₽ -->
             <div class="tab-content" id="unwarn-tab" role="tabpanel" hidden>
                 <div class="payment-method">
                     <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-exclamation-triangle unwarn-icon"></i> <!-- ИЗМЕНЕНА ЦЕНА: UnWarn - 145₽ -->
-                        <span>UnWarn - 145₽</span>
+                        <i class="fas fa-exclamation-triangle unwarn-icon"></i> <span>UnWarn - 145₽</span>
                     </h3>
                     
-                    <div class="card-info">
-                        <p style="color: #FFC400; margin-bottom: 10px;">Что такое UnWarn:</p>
-                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
-                            <li>Снятие одного предупреждения (варна)</li>
-                            <li>Очистка вашей репутации в боте</li>
-                            <li>Восстановление доступа к функциям</li>
-                            <li>Снятие ограничений, связанных с варнами</li>
-                        </ul>
+                    <!-- ОПЛАТА ЧЕРЕЗ ЮMONEY -->
+                    <div class="yoomoney-payment">
+                        <h4 class="yoomoney-title">
+                            <i class="fas fa-ruble-sign"></i> Оплатить через ЮMoney
+                        </h4>
                         
-                        <p style="color: #FFC400; margin-bottom: 10px;">Важно: Укажите ваш ID в комментарии к платежу</p>
+                        <!-- КНОПКА ЮMONEY ДЛЯ 145₽ -->
+                        <a href="https://yoomoney.ru/to/4100118083414183/145" 
+                           class="yoomoney-button"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fas fa-ruble-sign"></i> 
+                            Оплатить 145₽ через ЮMoney
+                        </a>
                         
-                        <!-- ИЗМЕНЕНА ЦЕНА: Переведите 145₽ на карту -->
-                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 145₽ на карту:</p>
-                        
-                        <div class="card-number">
-                            <span id="unwarn-card-number" class="formatted-card">2200 7020 6675 9189</span>
-                            <button class="copy-btn" data-copy="2200702066759189" aria-label="Копировать номер карты">
-                                <i class="fas fa-copy"></i> <span>Копировать</span>
-                            </button>
-                        </div>
-                        
-                        <div class="bank-details">
-                            <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
-                            <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
-                            <p><i class="fas fa-comment"></i> Назначение: Донат UnWarn [ваш ID]</p>
+                        <div class="sbp-note" style="color: #FFC400; margin-top: 10px;">
+                            <i class="fas fa-info-circle"></i> Укажите ваш ID в комментарии к платежу
                         </div>
                     </div>
                     
-                    <!-- ИЗМЕНЕНА ЦЕНА: Я перевел(а) 145₽ -->
+                    <div class="card-info">
+                        <div class="card-number">
+                            <span class="formatted-card">2200 7020 6675 9189</span>
+                            <button class="copy-btn" data-copy="2200702066759189">Копировать</button>
+                        </div>
+                        <div class="bank-details">
+                            <p>Михаил Шаталин • Тинькофф</p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://t.me/thewinnertakeisall?text=%D0%AF%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D0%BB(%D0%B0)%20UnWarn%20%D0%BD%D0%B0%20145%D1%80%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D0%AEMoney%20%E2%9A%A0%EF%B8%8F%0A%0A%F0%9F%93%B7%20%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%20%D1%87%D0%B5%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%0AM%D0%BE%D0%B9%20ID:%20" 
+                       class="telegram-btn" 
+                       target="_blank">
+                        <i class="fab fa-telegram"></i> Я оплатил, перейти в Telegram
+                    </a>
+                    
                     <div class="confirm-checkbox">
-                        <input type="checkbox" id="unwarn-confirm" aria-label="Подтвердить оплату UnWarn">
-                        <label for="unwarn-confirm">Я перевел(а) 145₽ на указанные реквизиты</label>
+                        <input type="checkbox" id="unwarn-confirm">
+                        <label for="unwarn-confirm">Я перевел(а) 145₽ и отправлю чек</label>
                     </div>
                 </div>
             </div>
             
-            <!-- Контент для UnBan -->
+            <!-- Контент для UnBan - 185₽ (НОВАЯ ЦЕНА) -->
             <div class="tab-content" id="unban-tab" role="tabpanel" hidden>
                 <div class="payment-method">
                     <h3 style="color: #FFD700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-ban unban-icon"></i> <span>UnBan - 250₽</span>
+                        <i class="fas fa-ban unban-icon"></i> <span>UnBan - 185₽</span>
                     </h3>
                     
-                    <div class="card-info">
-                        <p style="color: #FFC400; margin-bottom: 10px;">Что такое UnBan:</p>
-                        <ul style="color: #FFC400; padding-left: 20px; margin-bottom: 15px; font-size: 0.95rem;">
-                            <li>Разбан (снятие блокировки) в боте</li>
-                            <li>Полное восстановление аккаунта</li>
-                            <li>Возврат всех привилегий и прогресса</li>
-                        </ul>
+                    <!-- ОПЛАТА ЧЕРЕЗ ЮMONEY ДЛЯ 185₽ -->
+                    <div class="yoomoney-payment">
+                        <h4 class="yoomoney-title">
+                            <i class="fas fa-ruble-sign"></i> Оплатить через ЮMoney
+                        </h4>
                         
-                        <p style="color: #FFC400; margin-bottom: 10px;">Обязательно укажите ваш ID в комментарии к платежу</p>
+                        <!-- КНОПКА ЮMONEY ДЛЯ 185₽ -->
+                        <a href="https://yoomoney.ru/to/4100118083414183/185" 
+                           class="yoomoney-button"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fas fa-ruble-sign"></i> 
+                            Оплатить 185₽ через ЮMoney
+                        </a>
                         
-                        <p style="color: #FFC400; margin-bottom: 10px;">Переведите 250₽ на карту:</p>
-                        
-                        <div class="card-number">
-                            <span id="unban-card-number" class="formatted-card">2200 7020 6675 9189</span>
-                            <button class="copy-btn" data-copy="2200702066759189" aria-label="Копировать номер карты">
-                                <i class="fas fa-copy"></i> <span>Копировать</span>
-                            </button>
-                        </div>
-                        
-                        <div class="bank-details">
-                            <p><i class="fas fa-user"></i> Получатель: Михаил Шаталин</p>
-                            <p><i class="fas fa-bank"></i> Банк: Тинькофф</p>
-                            <p><i class="fas fa-comment"></i> Назначение: Донат UnBan [ваш ID]</p>
+                        <div class="sbp-note" style="color: #FFC400; margin-top: 10px;">
+                            <i class="fas fa-info-circle"></i> Укажите ваш ID в комментарии к платежу
                         </div>
                     </div>
                     
+                    <div class="card-info">
+                        <div class="card-number">
+                            <span class="formatted-card">2200 7020 6675 9189</span>
+                            <button class="copy-btn" data-copy="2200702066759189">Копировать</button>
+                        </div>
+                        <div class="bank-details">
+                            <p>Михаил Шаталин • Тинькофф</p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://t.me/thewinnertakeisall?text=%D0%AF%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D0%BB(%D0%B0)%20UnBan%20%D0%BD%D0%B0%20185%D1%80%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D0%AEMoney%20%E2%9B%94%0A%0A%F0%9F%93%B7%20%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%20%D1%87%D0%B5%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%0AM%D0%BE%D0%B9%20ID:%20" 
+                       class="telegram-btn" 
+                       target="_blank">
+                        <i class="fab fa-telegram"></i> Я оплатил, перейти в Telegram
+                    </a>
+                    
                     <div class="confirm-checkbox">
-                        <input type="checkbox" id="unban-confirm" aria-label="Подтвердить оплату UnBan">
-                        <label for="unban-confirm">Я перевел(а) 250₽ на указанные реквизиты</label>
+                        <input type="checkbox" id="unban-confirm">
+                        <label for="unban-confirm">Я перевел(а) 185₽ и отправлю чек</label>
                     </div>
                 </div>
             </div>
             
-            <!-- Кнопка оплаты -->
-            <button class="pay-button" id="payButton" disabled aria-label="Подтвердить оплату и отправить чек">
-                <i class="fas fa-paper-plane"></i> <span>Я оплатил, отправить чек</span>
-            </button>
-            
-            <!-- Плашка с контактом -->
-            <div class="contact-plate" id="contactPlate">
+            <!-- Плашка с контактом (дублирование важности чека) -->
+            <div class="contact-plate" id="contactPlate" style="display: block; margin-top: 20px;">
                 <div class="contact-icon">
                     <i class="fab fa-telegram"></i>
                 </div>
-                <h3 style="color: #FFD700; margin-bottom: 10px; font-size: clamp(1.2rem, 4vw, 1.5rem);">Отправьте чек оплаты</h3>
-                <p class="contact-info" style="color: #FFC400;">
-                    После оплаты отправьте скриншот чека или фото перевода нашему администратору в Telegram
+                <h3 style="color: #FFD700; margin-bottom: 10px;">Отправьте чек оплаты</h3>
+                <p class="contact-info" style="color: #FF5722; font-weight: bold;">
+                    ⚠️ БЕЗ ЧЕКА НЕ БУДЕТ ВЫДАЧИ И ВОЗВРАТА! ⚠️
                 </p>
                 
                 <div style="margin: 20px 0; padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
-                    <p style="color: #FFD700; font-weight: bold; margin-bottom: 5px; font-size: clamp(0.9rem, 3vw, 1rem);">Контакт для связи:</p>
-                    <p style="color: #FFC400; font-size: clamp(1rem, 4vw, 1.2rem);">
-                        <i class="fab fa-telegram"></i> @thewinnertakeisall
-                    </p>
+                    <p style="color: #FFD700; font-weight: bold; margin-bottom: 5px;">Контакт для связи:</p>
+                    <p style="color: #FFC400;">@thewinnertakeisall</p>
                 </div>
                 
-                <a href="https://t.me/thewinnertakeisall" class="telegram-link" target="_blank" rel="noopener noreferrer" aria-label="Написать администратору в Telegram">
-                    <i class="fab fa-telegram"></i> <span>Написать в Telegram</span>
+                <a href="https://t.me/thewinnertakeisall" class="telegram-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-telegram"></i> Написать в Telegram
                 </a>
                 
-                <p style="margin-top: 15px; color: #FFA500; font-size: clamp(0.8rem, 2.5vw, 0.9rem);">
-                    После проверки чека вам будут начислены привилегии в течение 24 часов
+                <p style="margin-top: 15px; color: #FFA500; font-size: 0.8rem;">
+                    После отправки чека привилегии будут начислены в течение 24 часов
                 </p>
-                
-                <!-- Особые инструкции для UnWarn/UnBan -->
-                <div id="specialInstructions" style="display: none; margin-top: 15px; padding: 10px; background: rgba(255, 87, 34, 0.1); border-radius: 8px; border-left: 3px solid #FF5722;">
-                    <p style="color: #FFC400; font-size: 0.85rem;">
-                        <i class="fas fa-info-circle"></i> 
-                        <span id="instructionsText"></span>
-                    </p>
-                </div>
             </div>
             
             <!-- Инструкция -->
             <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.05); border-radius: 10px; border-left: 3px solid #FFD700;">
-                <h4 style="color: #FFD700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-size: clamp(1rem, 3vw, 1.1rem);">
-                    <i class="fas fa-info-circle"></i> <span>Как это работает:</span>
+                <h4 style="color: #FFD700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-info-circle"></i> Как оплатить через ЮMoney:
                 </h4>
-                <ol style="color: #FFC400; padding-left: 20px; font-size: clamp(0.8rem, 2.5vw, 0.9rem); line-height: 1.6;">
-                    <li>Выберите тип доната</li>
-                    <li>Скопируйте реквизиты карты</li>
-                    <li>Совершите перевод в своем банковском приложении</li>
-                    <li>Подтвердите оплату галочкой</li>
-                    <li>Отправьте чек администратору в Telegram</li>
-                    <li>Получите привилегии в течение 24 часов</li>
+                <ol style="color: #FFC400; padding-left: 20px; font-size: 0.9rem; line-height: 1.6;">
+                    <li>Нажмите кнопку с нужной суммой (50₽, 100₽, 145₽, 185₽)</li>
+                    <li>Выберите способ оплаты (карта, ЮMoney, телефон)</li>
+                    <li>Подтвердите платеж</li>
+                    <li><strong style="color: #FF5722;">ОБЯЗАТЕЛЬНО</strong> нажмите "Я оплатил, перейти в Telegram"</li>
+                    <li>Отправьте скриншот чека администратору</li>
                 </ol>
+                <p style="color: #FF5722; margin-top: 10px; font-size: 0.9rem; font-weight: bold; text-align: center;">
+                    <i class="fas fa-exclamation-triangle"></i> Без чека — услуга не активируется и деньги не возвращаются!
+                </p>
             </div>
         </div>
     </div>
@@ -1436,7 +1332,6 @@
                         <i class="fas fa-history"></i> История развития
                     </h3>
                     <p style="color: #FFC400; line-height: 1.6;">
-                        <!-- ИЗМЕНЕНА ИСТОРИЯ РАЗВИТИЯ -->
                         В декабре 2025 года мы решили начать создание своего бота. 
                         Сначала это был простой проект с базовыми функциями, который мы 
                         временно забросили. Но наша страсть к созданию качественных 
@@ -1469,6 +1364,7 @@
             
             <div class="copyright">
                 <p>© 2024 Бот Анонимус. Все права защищены.</p>
+                <p>⚠️ Оплата без чека = услуга не активируется, возврата нет!</p>
                 <p>Контакты: @thewinnertakeisall (Telegram)</p>
             </div>
         </div>
@@ -1483,10 +1379,6 @@
         const aboutModal = document.getElementById('aboutModal');
         const closeDonate = document.getElementById('closeDonate');
         const closeAbout = document.getElementById('closeAbout');
-        const payButton = document.getElementById('payButton');
-        const contactPlate = document.getElementById('contactPlate');
-        const specialInstructions = document.getElementById('specialInstructions');
-        const instructionsText = document.getElementById('instructionsText');
         
         // Футер кнопки
         const footerDonateBtn = document.getElementById('footerDonateBtn');
@@ -1495,36 +1387,6 @@
         
         // Текущий выбранный тип доната
         let currentDonateType = 'vip';
-        
-        // Данные донатов (ИЗМЕНЕНА ЦЕНА UNWARN: 100 → 145)
-        const donateData = {
-            'vip': {
-                amount: '50',
-                card: '2200702066759189',
-                cardFormatted: '2200 7020 6675 9189',
-                confirmId: 'vip-confirm'
-            },
-            'custom': {
-                amount: '100',
-                card: '2200702066759189',
-                cardFormatted: '2200 7020 6675 9189',
-                confirmId: 'custom-confirm'
-            },
-            'unwarn': {
-                amount: '145', // ИЗМЕНЕНО: 100 → 145
-                card: '2200702066759189',
-                cardFormatted: '2200 7020 6675 9189',
-                confirmId: 'unwarn-confirm',
-                specialMessage: 'Для UnWarn обязательно укажите ваш ID пользователя в комментарии к платежу'
-            },
-            'unban': {
-                amount: '250',
-                card: '2200702066759189',
-                cardFormatted: '2200 7020 6675 9189',
-                confirmId: 'unban-confirm',
-                specialMessage: 'Для UnBan укажите ваш ID в комментарии'
-            }
-        };
 
         // Открытие модальных окон
         donateBtn.addEventListener('click', (e) => {
@@ -1647,21 +1509,6 @@
             
             // Сбрасываем состояние
             resetCheckboxAndPlate();
-            
-            // Обновляем специальные инструкции
-            updateSpecialInstructions();
-        }
-
-        // Обновление специальных инструкций
-        function updateSpecialInstructions() {
-            const data = donateData[currentDonateType];
-            
-            if (data.specialMessage) {
-                specialInstructions.style.display = 'block';
-                instructionsText.textContent = data.specialMessage;
-            } else {
-                specialInstructions.style.display = 'none';
-            }
         }
 
         // Копирование номера карты
@@ -1673,9 +1520,8 @@
                 try {
                     await navigator.clipboard.writeText(cardNumber);
                     
-                    // Визуальный feedback
                     const originalText = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-check"></i> <span>Скопировано!</span>';
+                    this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
                     this.classList.add('copied');
                     
                     setTimeout(() => {
@@ -1683,149 +1529,32 @@
                         this.classList.remove('copied');
                     }, 2000);
                 } catch (err) {
-                    // Fallback
-                    const textArea = document.createElement('textarea');
-                    textArea.value = cardNumber;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    
-                    const originalText = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-check"></i> <span>Скопировано!</span>';
-                    this.classList.add('copied');
-                    
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.classList.remove('copied');
-                    }, 2000);
+                    alert('Номер карты: ' + cardNumber);
                 }
             });
         });
 
         // Проверка чекбоксов
-        document.getElementById('vip-confirm').addEventListener('change', function() {
-            checkPaymentConfirmation();
-        });
+        document.getElementById('vip-confirm')?.addEventListener('change', checkPaymentConfirmation);
+        document.getElementById('custom-confirm')?.addEventListener('change', checkPaymentConfirmation);
+        document.getElementById('unwarn-confirm')?.addEventListener('change', checkPaymentConfirmation);
+        document.getElementById('unban-confirm')?.addEventListener('change', checkPaymentConfirmation);
 
-        document.getElementById('custom-confirm').addEventListener('change', function() {
-            checkPaymentConfirmation();
-        });
-
-        document.getElementById('unwarn-confirm').addEventListener('change', function() {
-            checkPaymentConfirmation();
-        });
-
-        document.getElementById('unban-confirm').addEventListener('change', function() {
-            checkPaymentConfirmation();
-        });
-
-        // Проверка подтверждения оплаты
         function checkPaymentConfirmation() {
-            const data = donateData[currentDonateType];
-            const isChecked = document.getElementById(data.confirmId).checked;
-            
-            if (isChecked) {
-                payButton.disabled = false;
-                payButton.setAttribute('aria-disabled', 'false');
-            } else {
-                payButton.disabled = true;
-                payButton.setAttribute('aria-disabled', 'true');
-            }
+            // Здесь можно добавить логику проверки, если нужно
         }
-
-        // Кнопка "Я оплатил, отправить чек"
-        payButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            const data = donateData[currentDonateType];
-            
-            // Показываем плашку с контактом
-            contactPlate.classList.add('active');
-            
-            // Обновляем специальные инструкции
-            updateSpecialInstructions();
-            
-            // Прокручиваем к плашке
-            contactPlate.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Меняем текст кнопки
-            this.innerHTML = '<i class="fas fa-check"></i> <span>Чек ожидает отправки</span>';
-            this.style.background = '#4CAF50';
-            this.disabled = true;
-            this.setAttribute('aria-disabled', 'true');
-            
-            // Показываем уведомление
-            setTimeout(() => {
-                const message = currentDonateType === 'unban' 
-                    ? `Оплата ${data.amount}₽ за UnBan успешно зарегистрирована! Отправьте чек администратору.`
-                    : `Оплата ${data.amount}₽ за ${currentDonateType} успешно зарегистрирована! Отправьте чек администратору в Telegram.`;
-                
-                alert(message);
-            }, 500);
-        });
 
         // Сброс формы доната
         function resetDonateForm() {
-            // Сбрасываем все чекбоксы
-            Object.values(donateData).forEach(data => {
-                const checkbox = document.getElementById(data.confirmId);
+            const checkboxes = ['vip-confirm', 'custom-confirm', 'unwarn-confirm', 'unban-confirm'];
+            checkboxes.forEach(id => {
+                const checkbox = document.getElementById(id);
                 if (checkbox) checkbox.checked = false;
             });
-            
-            // Скрываем плашку
-            contactPlate.classList.remove('active');
-            specialInstructions.style.display = 'none';
-            
-            // Сбрасываем кнопку
-            payButton.disabled = true;
-            payButton.setAttribute('aria-disabled', 'true');
-            payButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Я оплатил, отправить чек</span>';
-            payButton.style.background = '';
-            
-            // Устанавливаем VIP таб активным
-            document.querySelectorAll('.donate-tab').forEach(t => {
-                t.classList.remove('active');
-                t.setAttribute('aria-selected', 'false');
-            });
-            const vipTab = document.querySelector('[data-tab="vip"]');
-            if (vipTab) {
-                vipTab.classList.add('active');
-                vipTab.setAttribute('aria-selected', 'true');
-            }
-            
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-                content.hidden = true;
-            });
-            const vipContent = document.getElementById('vip-tab');
-            if (vipContent) {
-                vipContent.classList.add('active');
-                vipContent.hidden = false;
-            }
-            
-            currentDonateType = 'vip';
-            updateSpecialInstructions();
         }
 
-        // Сброс чекбокса и плашки
         function resetCheckboxAndPlate() {
-            // Сбрасываем все чекбоксы
-            Object.values(donateData).forEach(data => {
-                const checkbox = document.getElementById(data.confirmId);
-                if (checkbox) checkbox.checked = false;
-            });
-            
-            // Скрываем плашку
-            contactPlate.classList.remove('active');
-            specialInstructions.style.display = 'none';
-            
-            // Сбрасываем кнопку
-            payButton.disabled = true;
-            payButton.setAttribute('aria-disabled', 'true');
-            payButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Я оплатил, отправить чек</span>';
-            payButton.style.background = '';
-            
-            updateSpecialInstructions();
+            resetDonateForm();
         }
 
         // Обработка ошибки загрузки изображения
@@ -1833,78 +1562,17 @@
         if (botImage) {
             botImage.addEventListener('error', function() {
                 this.src = 'https://i.imgur.com/8W0Np8C.png';
-                this.alt = 'Бот Анонимус - изображение временно недоступно';
             });
         }
         
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            // Добавляем обработку клавиатурной навигации для табов
-            document.addEventListener('keydown', function(e) {
-                if (donateModal.style.display === 'flex') {
-                    const tabs = document.querySelectorAll('.donate-tab');
-                    const activeIndex = Array.from(tabs).findIndex(t => t.classList.contains('active'));
-                    
-                    if (e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        const nextIndex = (activeIndex + 1) % tabs.length;
-                        switchTab(tabs[nextIndex]);
-                        tabs[nextIndex].focus();
-                    } else if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        const prevIndex = (activeIndex - 1 + tabs.length) % tabs.length;
-                        switchTab(tabs[prevIndex]);
-                        tabs[prevIndex].focus();
-                    }
+        // Добавляем текущее время в ссылки Telegram
+        document.querySelectorAll('.telegram-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Можно добавить предупреждение о чеке
+                if (!confirm('⚠️ ВАЖНО: Не забудьте отправить скриншот чека администратору! Без чека услуга не активируется и возврата нет. Продолжить?')) {
+                    event.preventDefault();
+                    return false;
                 }
-            });
-            
-            // Добавляем плавную прокрутку для всех внутренних ссылок
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href !== '#') {
-                        e.preventDefault();
-                        const target = document.querySelector(href);
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    }
-                });
-            });
-            
-            // Анимация карточек при скролле
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Наблюдаем за карточкой обновлений
-            document.querySelectorAll('.update-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
-            });
-            
-            // Наблюдаем за карточками целей
-            document.querySelectorAll('.goal-item').forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(15px)';
-                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(item);
             });
         });
     </script>
